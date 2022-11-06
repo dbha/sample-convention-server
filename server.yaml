@@ -55,7 +55,8 @@ spec:
     spec:
       containers:
       - name: webhook
-        image: ko://github.com/vmware-tanzu/cartographer-conventions/samples/convention-server
+        #image: ko://github.com/vmware-tanzu/cartographer-conventions/samples/convention-server
+        image: harborapp.shared.lab.pksdemo.net/library/sample-convention-server@sha256:fa3dfcdd3c57d88c2e33a39dff0dc06f5433b9b172688bbb3a1d47a18553d513
         env:
         - name: PORT
           value: "8443"
