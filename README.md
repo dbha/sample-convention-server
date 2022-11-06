@@ -2,11 +2,11 @@
 
 
 
-#### Create Image
+#### 1. Create Image
 ./kp_create_image.sh
 
-#### Deploy sample convention server
- kubectl apply -f server.yaml
+#### 2. Deploy sample convention server
+kubectl apply -f server.yaml
 namespace/sample-conventions created
 issuer.cert-manager.io/selfsigned-issuer created
 certificate.cert-manager.io/webhook-cert created
@@ -16,15 +16,15 @@ service/webhook created
 clusterpodconvention.conventions.carto.run/sample created
 
 
-#### Check CR
- kubectl get clusterpodconvention.conventions.carto.run
+#### 3. Check CR
+kubectl get clusterpodconvention.conventions.carto.run
 NAME                     AGE
 appliveview-sample       7d23h
 developer-conventions    7d23h
 sample                   70s
 spring-boot-convention   7d23h
 
- k get all -n sample-conventions
+kubectl get all -n sample-conventions
 NAME                           READY   STATUS    RESTARTS   AGE
 pod/webhook-7566788dbf-9qzdd   1/1     Running   0          2m53s
 
@@ -38,8 +38,8 @@ NAME                                 DESIRED   CURRENT   READY   AGE
 replicaset.apps/webhook-7566788dbf   1         1         1       2m55s
   
   
-#### Create Workload
- tanzu apps workload create my-rsvpapp \
+#### 4. Create Workload
+tanzu apps workload create my-rsvpapp \
   --app my-rsvpapp \
   --type web \
   --git-repo https://github.com/dbha/myrsvpapp \
@@ -54,8 +54,8 @@ replicaset.apps/webhook-7566788dbf   1         1         1       2m55s
   --tail \
   --yes
   
-#### Check Workload ENV
- kubectl get podintent.conventions.carto.run/my-rsvpapp -o yaml -n demo-app -o jsonpath='{.status.template.spec.containers}' | jq .
+#### 5. Check Workload ENV
+kubectl get podintent.conventions.carto.run/my-rsvpapp -o yaml -n demo-app -o jsonpath='{.status.template.spec.containers}' | jq .
 [
   {
     "env": [
