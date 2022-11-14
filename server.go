@@ -48,9 +48,18 @@ func conventionHandler(template *corev1.PodTemplateSpec, images []webhook.ImageC
 }
 
 func addEnvVar(container *corev1.Container, envvar corev1.EnvVar) bool {
+/*
 	for _, e := range container.Env {
 		if e.Name == envvar.Name {
 			return false
+		}
+	}
+*/	
+	for _, e := range container.Env {
+		if e.Name == "CONVENTION_APPLY" {
+			if e.Value == "false" {
+				return false
+			}			
 		}
 	}
 	container.Env = append(container.Env, envvar)
