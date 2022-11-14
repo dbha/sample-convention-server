@@ -6,3 +6,7 @@ kp image save sample-convention-server \
   --git-revision main \
   --env BP_JVM_VERSION=17 \
   --wait
+
+kp image list -A
+
+kp build logs sample-convention-server -n default
